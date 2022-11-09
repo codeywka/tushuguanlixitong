@@ -1,0 +1,25 @@
+version: '1.0'
+name: pipeline-20211124
+displayName: pipeline-20211124
+triggers:
+  push:
+    branches:
+      prefix:
+        - ''
+stages:
+  - name: stage-e5ea441b
+    displayName: 未命名
+    strategy: naturally
+    trigger: auto
+    steps:
+      - step: build@maven
+        name: build_maven
+        displayName: Maven 构建
+        jdkVersion: '8'
+        mavenVersion: 3.3.9
+        artifacts:
+          - name: BUILD_ARTIFACT
+            path:
+              - ./target
+        commands:
+          - mvn -B clean package -Dmaven.test.skip=true
